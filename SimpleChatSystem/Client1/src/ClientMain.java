@@ -1,5 +1,6 @@
 package Client1.src;
 
+import Client1.src.Networking.Client;
 import Networking.Client;
 
 import java.io.IOException;
