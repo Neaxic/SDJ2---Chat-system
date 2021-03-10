@@ -17,12 +17,7 @@ import java.beans.PropertyChangeListener;
 
 public class Viewmodel implements PropertyChangeListener {
 
-    StringProperty outputlabel;
-    StringProperty outputlabel1;
-    StringProperty outputlabel2;
-    StringProperty outputlabelWarning;
-    StringProperty powerLabel;
-    StringProperty currentMin, currentMax;
+    StringProperty textField;
     TemperatureModel temperatureModel;
     String thermometerId;
     Radiator radiator;
@@ -32,70 +27,23 @@ public class Viewmodel implements PropertyChangeListener {
 
     public Viewmodel(TemperatureModel temperatureModel, Radiator radiator){
         this.temperatureModel = temperatureModel;
-        outputlabel = new SimpleStringProperty();
-        outputlabel1 = new SimpleStringProperty();
-        outputlabel2 = new SimpleStringProperty();
-        outputlabelWarning = new SimpleStringProperty();
-        outputlabelWarning.setValue("Temprature is normal");
-        currentMin = new SimpleStringProperty();
-        currentMax = new SimpleStringProperty();
-        powerLabel = new SimpleStringProperty();
-        this.radiator = radiator;
+        textField = new SimpleStringProperty();
             temperatureModel.addListenter("t1", this);
             temperatureModel.addListenter("t2", this);
             temperatureModel.addListenter("t3", this);
     }
 
-    public StringProperty getOutputlabel() {
-        return outputlabel;
-    }
-    public StringProperty getOutputlabel1() {
-        return outputlabel1;
-    }
-    public StringProperty getOutputlabel2() {
-        return outputlabel2;
-    }
-    public StringProperty getPowerLabel() {
-        return powerLabel;
-    }
-    public StringProperty getOutputlabelWarning(){return outputlabelWarning; }
-
-    public StringProperty getCurrentMin() {
-        return currentMin;
-    }
-
-    public StringProperty currentMinProperty() {
-        return currentMin;
-    }
-
-    public StringProperty getCurrentMax() {
-        return currentMax;
-    }
-
-    public StringProperty currentMaxProperty() {
-        return currentMax;
+    public StringProperty getTextField() {
+        return textField;
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if(thermometer1.isCriticalTemp() || thermometer2.isCriticalTemp()){
-                    outputlabelWarning.setValue("Temprature is at a critical level");
-                } else {
-                    outputlabelWarning.setValue("Temprature is normal");
-                }
-                // kan flyttes til et andet sted (vi behøver ikke opdatatere hele tiden)
-                currentMin.setValue("Current min: "+thermometer1.getMinValue());
-                currentMax.setValue("Current max: "+thermometer1.getMaxValue());
-                powerLabel.setValue("Power position: " +radiator.getPower());
-                if(evt.getPropertyName().equals("t1")){
                     outputlabel.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
-                } else if(evt.getPropertyName().equals("t2")){
                     outputlabel1.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
-                } else if(evt.getPropertyName().equals("t3")){
                     outputlabel2.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
-                }
             }
         });
     }
