@@ -43,7 +43,7 @@ public class ViewHandler extends Application
     switch (id)
     {
       case "chatbox":
-        root = loadChatView("SettingsView.fxml");
+        root = loadChatView("ChatBox.fxml");
         break;
       case "settings":
         root = loadSettingsView("SettingsView.fxml");

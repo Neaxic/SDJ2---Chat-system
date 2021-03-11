@@ -20,19 +20,16 @@ public class Viewmodel implements PropertyChangeListener {
     StringProperty textField;
     StringProperty textArea;
     TemperatureModel temperatureModel;
-    String thermometerId;
     ViewHandler view;
-    Thermometer thermometer1;
-    Thermometer thermometer2;
 
     public Viewmodel(TemperatureModel temperatureModel){
         this.temperatureModel = temperatureModel;
         textField = new SimpleStringProperty();
         textArea = new SimpleStringProperty();
 
-            temperatureModel.addListenter("t1", this);
+           /* temperatureModel.addListenter("t1", this);
             temperatureModel.addListenter("t2", this);
-            temperatureModel.addListenter("t3", this);
+            temperatureModel.addListenter("t3", this);*/
     }
 
     public StringProperty getTextField() {
@@ -46,11 +43,6 @@ public class Viewmodel implements PropertyChangeListener {
                     //outputlabel.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
             }
         });
-    }
-
-    public void setThermometer(Thermometer thermometer1, Thermometer thermometer2) {
-        this.thermometer1 = thermometer1;
-        this.thermometer2 = thermometer2;
     }
 
     public void setView(ViewHandler view){

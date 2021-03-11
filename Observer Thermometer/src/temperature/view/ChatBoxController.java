@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -16,7 +17,7 @@ public class ChatBoxController {
     private Viewmodel viewmodel;
 
     @FXML private TextField inputText;
-    @FXML private TextArea ReciveText;
+    @FXML private ListView ReciveText;
 
     public ChatBoxController() {
     }
@@ -26,13 +27,17 @@ public class ChatBoxController {
         this.viewHandler = viewHandler;
         this.viewmodel = viewmodel;
         this.root = root;
-        //inputText.textProperty().bind(viewmodel.getOutputlabel());
-        ReciveText.textProperty().bind(viewmodel.getTextField());
+        //inputText.textProperty().bind(viewmodel.getTextField());
+        //ReciveText.textProperty().bind(viewmodel.getTextField());
     }
 
     @FXML private void NicknamePromt()
     {
-        viewmodel.NicknamePromt();
+        //viewmodel.NicknamePromt();
+    }
+
+    public void send(){
+        System.out.println("test");
     }
 
     public void reset()
