@@ -22,12 +22,10 @@ public class ViewHandler extends Application
   private ChatBoxController chatBoxController;
   private ViewModelFactory viewModelFactory;
 
-  private Client c1;
 
-  public ViewHandler(Client c1, ViewModelFactory viewModelFactory)
+  public ViewHandler(ViewModelFactory viewModelFactory)
   {
     this.viewModelFactory = viewModelFactory;
-    this.c1 = c1;
   }
 
   public void start(Stage primaryStage)

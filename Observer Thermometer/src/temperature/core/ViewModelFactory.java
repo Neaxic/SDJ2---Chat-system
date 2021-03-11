@@ -2,7 +2,6 @@ package temperature.core;
 
 import temperature.ViewModel.Viewmodel;
 import temperature.ViewModel.ViewmodelSettings;
-import temperature.model.Temperature;
 
 public class ViewModelFactory {
 

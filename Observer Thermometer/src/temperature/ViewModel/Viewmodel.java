@@ -48,11 +48,15 @@ public class Viewmodel {
         });
     }*/
 
+    public void send(){
+        System.out.println("Viewmodel check: " +textField.get());
+    }
+
     public void setView(ViewHandler view){
         this.view = view;
     }
 
-    public void NicknamePromt(){
+    public void Settings(){
         view.openView("settings");
     }
 }

@@ -1,5 +1,4 @@
 import Client.Client;
-import External.Thermometer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import temperature.core.ModelFactory;
@@ -18,18 +17,14 @@ public class MyApplication extends Application
 
     //Start Threads
     Client c1 = new Client();
-    c1.start();
-    ViewHandler view = new ViewHandler(c1, viewModelFactory);
+    ViewHandler view = new ViewHandler(viewModelFactory);
     Thread t1 = new Thread(c1);
     t1.start();
-
 
     // View
     view.start(primaryStage);
     viewModelFactory.getViewModel().setView(view);
-
-
-    viewModelFactory.getViewModelSettings().setView(view);
+    //viewModelFactory.getViewModelSettings().setView(view);
 
   }
 }

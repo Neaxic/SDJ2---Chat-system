@@ -1,15 +1,9 @@
 package temperature.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import temperature.ViewModel.Viewmodel;
-import temperature.ViewModel.ViewmodelSettings;
 
 public class ChatBoxController {
     private ViewHandler viewHandler;
@@ -17,7 +11,7 @@ public class ChatBoxController {
     private Viewmodel viewmodel;
 
     @FXML private TextField inputText;
-    @FXML private ListView ReciveText;
+    //@FXML private ListView ReciveText;
 
     public ChatBoxController() {
     }
@@ -27,17 +21,17 @@ public class ChatBoxController {
         this.viewHandler = viewHandler;
         this.viewmodel = viewmodel;
         this.root = root;
-        // inputText.textProperty().bind(viewmodel.getTextField());
+        inputText.textProperty().bind(viewmodel.getTextField());
         //ReciveText.textProperty().bind(viewmodel.getTextField());
     }
 
-    @FXML private void NicknamePromt()
+    @FXML public void Settings()
     {
-        //viewmodel.NicknamePromt();
+        viewmodel.Settings();
     }
 
     public void send(){
-        System.out.println("test");
+        viewmodel.send();
     }
 
     public void reset()
