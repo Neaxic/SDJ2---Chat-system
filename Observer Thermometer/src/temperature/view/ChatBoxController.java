@@ -27,7 +27,7 @@ public class ChatBoxController {
         this.viewHandler = viewHandler;
         this.viewmodel = viewmodel;
         this.root = root;
-        //inputText.textProperty().bind(viewmodel.getTextField());
+        // inputText.textProperty().bind(viewmodel.getTextField());
         //ReciveText.textProperty().bind(viewmodel.getTextField());
     }
 
