@@ -26,7 +26,6 @@ public class MyApplication extends Application
 
     // View
     view.start(primaryStage);
-
     viewModelFactory.getViewModel().setView(view);
 
 

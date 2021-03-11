@@ -5,8 +5,11 @@ import Radiator.Radiator;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import temperature.core.ModelFactory;
 import temperature.core.ViewModelFactory;
+import temperature.mediator.ClientModel;
 import temperature.mediator.TemperatureModel;
 import temperature.model.Temperature;
 import temperature.view.ViewHandler;
@@ -15,35 +18,35 @@ import javax.print.DocFlavor;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class Viewmodel implements PropertyChangeListener {
+public class Viewmodel {
 
     StringProperty textField;
     StringProperty textArea;
-    TemperatureModel temperatureModel;
+    ClientModel clientModel;
     ViewHandler view;
 
-    public Viewmodel(TemperatureModel temperatureModel){
-        this.temperatureModel = temperatureModel;
+    public Viewmodel(ClientModel clientModel){
+        this.clientModel = clientModel;
         textField = new SimpleStringProperty();
         textArea = new SimpleStringProperty();
 
-           /* temperatureModel.addListenter("t1", this);
-            temperatureModel.addListenter("t2", this);
-            temperatureModel.addListenter("t3", this);*/
+            /*clientModel.addListenter("c1", this);
+            clientModel.addListenter("t2", this);
+            clientModel.addListenter("t3", this);*/
     }
 
     public StringProperty getTextField() {
         return textField;
     }
 
-    public void propertyChange(PropertyChangeEvent evt) {
+    /* public void propertyChange(PropertyChangeEvent evt) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                    //outputlabel.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
+                    textField.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
             }
         });
-    }
+    }*/
 
     public void setView(ViewHandler view){
         this.view = view;
@@ -51,9 +54,5 @@ public class Viewmodel implements PropertyChangeListener {
 
     public void NicknamePromt(){
         view.openView("settings");
-    }
-
-    public TemperatureModel getTemperatureModel() {
-        return temperatureModel;
     }
 }
