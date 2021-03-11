@@ -10,7 +10,7 @@ public class ViewModelFactory {
     private ViewmodelSettings viewModelSettings;
 
     public ViewModelFactory(ModelFactory modelFactory) {
-        viewModel = new Viewmodel(modelFactory.getDataModel(), modelFactory.getR());
+        viewModel = new Viewmodel(modelFactory.getDataModel());
         viewModelSettings = new ViewmodelSettings();
     }
 

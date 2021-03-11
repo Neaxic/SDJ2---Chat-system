@@ -26,13 +26,22 @@ public class ChatBoxController {
         this.viewHandler = viewHandler;
         this.viewmodel = viewmodel;
         this.root = root;
-        inputText.textProperty().bind(viewmodel.getOutputlabel());
+        //inputText.textProperty().bind(viewmodel.getOutputlabel());
         ReciveText.textProperty().bind(viewmodel.getTextField());
     }
 
     @FXML private void NicknamePromt()
     {
-        viewmodel.settings();
+        viewmodel.NicknamePromt();
     }
 
+    public void reset()
+    {
+        // empty
+    }
+
+    public Region getRoot()
+    {
+        return root;
+    }
 }

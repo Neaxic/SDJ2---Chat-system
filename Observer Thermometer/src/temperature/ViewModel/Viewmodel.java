@@ -18,16 +18,18 @@ import java.beans.PropertyChangeListener;
 public class Viewmodel implements PropertyChangeListener {
 
     StringProperty textField;
+    StringProperty textArea;
     TemperatureModel temperatureModel;
     String thermometerId;
-    Radiator radiator;
     ViewHandler view;
     Thermometer thermometer1;
     Thermometer thermometer2;
 
-    public Viewmodel(TemperatureModel temperatureModel, Radiator radiator){
+    public Viewmodel(TemperatureModel temperatureModel){
         this.temperatureModel = temperatureModel;
         textField = new SimpleStringProperty();
+        textArea = new SimpleStringProperty();
+
             temperatureModel.addListenter("t1", this);
             temperatureModel.addListenter("t2", this);
             temperatureModel.addListenter("t3", this);
@@ -41,9 +43,7 @@ public class Viewmodel implements PropertyChangeListener {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                    outputlabel.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
-                    outputlabel1.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
-                    outputlabel2.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
+                    //outputlabel.setValue(evt.getPropertyName() +": "+evt.getNewValue().toString());
             }
         });
     }
@@ -53,31 +53,11 @@ public class Viewmodel implements PropertyChangeListener {
         this.thermometer2 = thermometer2;
     }
 
-    public void updateButton() {
-        Temperature t = temperatureModel.getLastInsertedTemperature(thermometerId);
-        if (t != null)
-        {
-            outputlabel.setValue(t.toString());
-        }
-        else
-        {
-            outputlabel.setValue("No data");
-        }
-    }
-
-    public void upRadiator(){
-        radiator.turnUp();
-    }
-
-    public void downRadiator(){
-        radiator.turnDown();
-    }
-
     public void setView(ViewHandler view){
         this.view = view;
     }
 
-    public void settings(){
+    public void NicknamePromt(){
         view.openView("settings");
     }
 

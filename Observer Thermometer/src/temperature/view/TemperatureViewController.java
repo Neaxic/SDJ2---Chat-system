@@ -40,14 +40,14 @@ public class TemperatureViewController
       this.viewmodel = viewmodel;
       this.root = root;
       thermometerId = null;
-
+/*
       outputLabel.textProperty().bind(viewmodel.getOutputlabel());
       outputLabel1.textProperty().bind(viewmodel.getOutputlabel1());
       outputLabel2.textProperty().bind(viewmodel.getOutputlabel2());
       powerLabel.textProperty().bind(viewmodel.getPowerLabel());
       outputLabelWarning.textProperty().bind(viewmodel.getOutputlabelWarning());
       currentMax.textProperty().bind(viewmodel.getCurrentMax());
-      currentMin.textProperty().bind(viewmodel.getCurrentMin());
+      currentMin.textProperty().bind(viewmodel.getCurrentMin());*/
    }
 
    public void reset()
@@ -58,25 +58,6 @@ public class TemperatureViewController
    public Region getRoot()
    {
       return root;
-   }
-
-   @FXML private void updateButtonPressed()
-   {
-      viewmodel.updateButton();
-   }
-
-   @FXML private void upRadiator()
-   {
-      viewmodel.upRadiator();
-   }
-
-   @FXML private void downRadiator()
-   {
-      viewmodel.downRadiator();
-   }
-   @FXML private void settings()
-   {
-      viewmodel.settings();
    }
 
 

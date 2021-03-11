@@ -1,5 +1,6 @@
 package temperature.view;
 
+import Client.Client;
 import External.Thermometer;
 import Radiator.Radiator;
 import com.sun.javafx.property.adapter.PropertyDescriptor;
@@ -17,25 +18,23 @@ public class ViewHandler extends Application
   private Stage primaryStage;
   private Scene currentScene;
 
-  private TemperatureViewController temperatureViewController;
   private SettingsViewController settingsViewController;
+  private ChatBoxController chatBoxController;
   private ViewModelFactory viewModelFactory;
 
-  private Thermometer t1, t2, t3;
+  private Client c1;
 
-  public ViewHandler(Thermometer t1, Thermometer t2, Thermometer t3, Radiator r, ViewModelFactory viewModelFactory)
+  public ViewHandler(Client c1, ViewModelFactory viewModelFactory)
   {
     this.viewModelFactory = viewModelFactory;
-    this.t1 = t1;
-    this.t2 = t2;
-    this.t3 = t3;
+    this.c1 = c1;
   }
 
   public void start(Stage primaryStage)
   {
     this.primaryStage = primaryStage;
     this.currentScene = new Scene(new Region());
-    openView("temperature");
+    openView("chatbox");
   }
 
   public void openView(String id)
@@ -43,8 +42,8 @@ public class ViewHandler extends Application
     Region root = null;
     switch (id)
     {
-      case "temperature":
-        root = loadTemperatureView("TemperatureView.fxml");
+      case "chatbox":
+        root = loadChatView("SettingsView.fxml");
         break;
       case "settings":
         root = loadSettingsView("SettingsView.fxml");
@@ -64,9 +63,9 @@ public class ViewHandler extends Application
     primaryStage.show();
   }
 
-  private Region loadTemperatureView(String fxmlFile)
+  private Region loadChatView(String fxmlFile)
   {
-    if (temperatureViewController == null)
+    if (chatBoxController == null)
     {
       try
       {
@@ -74,8 +73,8 @@ public class ViewHandler extends Application
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlFile));
         Region root = loader.load();
-        temperatureViewController = loader.getController();
-        temperatureViewController.init(this, viewModelFactory.getViewModel() , root);
+        chatBoxController = loader.getController();
+        chatBoxController.init(this, viewModelFactory.getViewModel() , root);
       }
       catch (Exception e)
       {
@@ -84,9 +83,9 @@ public class ViewHandler extends Application
     }
     else
     {
-      temperatureViewController.reset();
+      chatBoxController.reset();
     }
-    return temperatureViewController.getRoot();
+    return chatBoxController.getRoot();
   }
 
   private Region loadSettingsView(String fxmlFile)

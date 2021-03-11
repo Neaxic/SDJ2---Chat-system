@@ -22,12 +22,11 @@ public class Thermometer implements Runnable{
     private int maxValue = 20;
     private int minValue = -20;
 
-    public Thermometer(String id, double t, int d, TemperatureModel model, Radiator r) {
+    public Thermometer(String id, double t, int d, TemperatureModel model) {
         this.id = id;
         this.t = t;
         this.d = d;
         this.model = model;
-        this.r = r;
     }
 
     private double temperature(double t, int p, int d, double t0, int s)
@@ -49,7 +48,7 @@ public class Thermometer implements Runnable{
     @Override
     public void run() {
         while(true){
-            temperature(t,r.getPower(),d,0,6);
+            temperature(t,2,d,0,6);
             model.addTemperature(id,t);
             try {
                 Thread.sleep(2000);

@@ -17,10 +17,4 @@ public class ModelFactory {
             return dataModel;
         }
 
-    public Radiator getR() {
-        if(r == null){
-            r = new Radiator();
-        }
-        return r;
-    }
 }
