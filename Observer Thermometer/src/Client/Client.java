@@ -60,4 +60,8 @@ public class Client implements Runnable {
             e.printStackTrace();
         }
     }
+
+    public ClientSocketHandler getHandler() {
+        return handler;
+    }
 }

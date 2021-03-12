@@ -2,6 +2,8 @@ package Client;
 
 import External.Message;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +16,7 @@ public class ClientSocketHandler implements Runnable {
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private String Nickname;
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     public ClientSocketHandler(Client client, Socket socket) throws IOException {
         this.client = client;
@@ -30,6 +33,7 @@ public class ClientSocketHandler implements Runnable {
             while (true) {
                 Message message = (Message) in.readObject();
                 client.messageReceived(message.getText());
+                changeSupport.firePropertyChange("Msg", null, new Message(message.getWhoText()));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,6 +41,10 @@ public class ClientSocketHandler implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    public void setNickname(String nickname) {
+        Nickname = nickname;
     }
 
     public void sendMessage(String message) {
@@ -53,5 +61,30 @@ public class ClientSocketHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void addPropertyChangeListerner(String name, PropertyChangeListener listener){
+        if(name == null){
+            changeSupport.addPropertyChangeListener(listener);
+        } else {
+            changeSupport.addPropertyChangeListener(name, listener);
+        }
+    }
+
+    public void addPropertyChangeListerner(PropertyChangeListener listener){
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListerner(String name, PropertyChangeListener listener) {
+        if (name == null) {
+            changeSupport.removePropertyChangeListener(listener);
+        } else {
+            changeSupport.removePropertyChangeListener(name, listener);
+        }
+    }
+
+    public void removePropertyChangeListerner(PropertyChangeListener listener){
+        changeSupport.removePropertyChangeListener(listener);
     }
 }

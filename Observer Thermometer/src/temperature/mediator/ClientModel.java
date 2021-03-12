@@ -1,7 +1,8 @@
 package temperature.mediator;
 
-import temperature.model.Temperature;
+import Client.PropertyChangeSubject;
 
-public interface ClientModel extends NamedPropertyChangeSubject{
+public interface ClientModel extends PropertyChangeSubject {
     void addMessage(String id, String msg);
 }
+//TODO: WTF ER DET HER

@@ -13,7 +13,7 @@ public class MyApplication extends Application
 
     // Model
     ModelFactory modelFactory = new ModelFactory();
-    ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
+    ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory, c1.getHandler());
 
     //Start Threads
     Client c1 = new Client();
@@ -23,8 +23,8 @@ public class MyApplication extends Application
 
     // View
     view.start(primaryStage);
-    viewModelFactory.getViewModel().setView(view);
-    //viewModelFactory.getViewModelSettings().setView(view);
+    viewModelFactory.getViewModel().setClientSocketHandler(c1.getHandler());
+    viewModelFactory.getViewModelSettings().setClientSocketHandler(c1.getHandler());
 
   }
 }

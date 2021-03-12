@@ -1,15 +1,18 @@
 package temperature.core;
 
+import Client.ClientSocketHandler;
 import temperature.ViewModel.Viewmodel;
 import temperature.ViewModel.ViewmodelSettings;
+
+import java.io.IOException;
 
 public class ViewModelFactory {
 
     private Viewmodel viewModel;
     private ViewmodelSettings viewModelSettings;
 
-    public ViewModelFactory(ModelFactory modelFactory) {
-        viewModel = new Viewmodel(modelFactory.getDataModel());
+    public ViewModelFactory(ModelFactory modelFactory, ClientSocketHandler handler) throws IOException {
+        viewModel = new Viewmodel(handler);
         viewModelSettings = new ViewmodelSettings();
     }
 

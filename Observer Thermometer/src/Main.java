@@ -1,4 +1,3 @@
-import External.Thermometer;
 import javafx.application.Application;
 
 public class Main

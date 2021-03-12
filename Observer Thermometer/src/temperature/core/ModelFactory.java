@@ -1,22 +1,21 @@
 package temperature.core;
 
-import Radiator.Radiator;
-import temperature.mediator.ClientModel;
-import temperature.mediator.ClientModelManager;
-import temperature.mediator.TemperatureModel;
-import temperature.mediator.TemperatureModelManager;
-import temperature.model.Temperature;
+import Client.ClientSocketHandler;
+
+import java.io.IOException;
 
 public class ModelFactory {
 
         //private TemperatureModel dataModel;
-        private ClientModel dataModel;
+        private ClientSocketHandler dataModel;
 
-        private Radiator r;
+    public void setDataModel(ClientSocketHandler dataModel) {
+        this.dataModel = dataModel;
+    }
 
-        public ClientModel getDataModel() {
+    public ClientSocketHandler getDataModel() throws IOException {
             if(dataModel == null) {
-                dataModel = new ClientModelManager();
+                //dataModel = new ClientSocketHandler() {
             }
             return dataModel;
         }

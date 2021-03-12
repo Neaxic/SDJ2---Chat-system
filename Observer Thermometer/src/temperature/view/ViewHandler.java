@@ -1,17 +1,11 @@
 package temperature.view;
 
-import Client.Client;
-import External.Thermometer;
-import Radiator.Radiator;
-import com.sun.javafx.property.adapter.PropertyDescriptor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import temperature.ViewModel.Viewmodel;
 import temperature.core.ViewModelFactory;
-import temperature.mediator.TemperatureModel;
 
 public class ViewHandler extends Application
 {

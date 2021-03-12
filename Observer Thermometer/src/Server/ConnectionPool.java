@@ -17,10 +17,13 @@ public class ConnectionPool {
         connections.remove(handler);
     }
 
+
     public void broadcastMessage(String msg) {
         System.out.println("Broadcasting '" + msg + "' to " + connections.size() + " clients");;
         for (ServerSocketHandler handler : connections) {
             handler.sendMessage(msg);
         }
+
+
     }
 }
