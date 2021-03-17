@@ -22,6 +22,8 @@ public class Server {
                 Thread t = new Thread(serverSocketHandler);
                 t.start();
             }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
