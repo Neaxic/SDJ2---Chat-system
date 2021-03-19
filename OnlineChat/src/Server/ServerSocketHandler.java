@@ -32,13 +32,21 @@ public class ServerSocketHandler implements Runnable {
                 String[] stringInputArray = messageFromClient.split(": ");
                 currentMessage.setWhoText(stringInputArray[0], stringInputArray[1]);
                 System.out.println(messageFromClient);
-                if (currentMessage.getText().equals("exit")) {
+                if (currentMessage.getText().equals("!exit")) {
                     pool.removeHandler(this);
                     break;
                 }
                 if(currentMessage.getText().equals("!chatters")){
-                    sendMessage("Currently " +pool.getConnections().size() +" active chatters!");
-                } else{
+                    sendMessage("Currently " +pool.getConnections().size() +" active chatters!: ");
+                    for(int i = 0; i < pool.getConnections().size(); i++){
+                        sendMessage(pool.getConnections().get(i).currentMessage.getWho() +" ");
+                    }
+                } else if (currentMessage.getText().contains("#NickNameUpdated!")) {
+                    currentMessage.setWhoText(currentMessage.getText().replace("#NickNameUpdated!", ""), "");
+                    for(int i = 0; i<pool.getConnections().size(); i++) {
+                        pool.broadcastMessage("#NewNickConnected: " + pool.getConnections().get(i).currentMessage.getWho());
+                    }
+                } else {
                     pool.broadcastMessage(messageFromClient);
                 }
             }

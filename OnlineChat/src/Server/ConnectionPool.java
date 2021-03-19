@@ -1,5 +1,6 @@
 package Server;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class ConnectionPool {
         connections = new ArrayList<>();
     }
 
-    public void addHandler(ServerSocketHandler handler) {
+    public void addHandler(ServerSocketHandler handler) throws IOException, ClassNotFoundException {
         connections.add(handler);
         for(ServerSocketHandler handler1 : connections){
             handler1.sendMessage("New person connected!");
