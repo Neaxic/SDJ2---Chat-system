@@ -1,9 +1,9 @@
 import Model.Client;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import temperature.core.ModelFactory;
-import temperature.core.ViewModelFactory;
-import temperature.view.ViewHandler;
+import Client.core.ModelFactory;
+import Client.core.ViewModelFactory;
+import Client.view.ViewHandler;
 
 import java.io.IOException;
 
